@@ -1,0 +1,301 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+  /* Typographie */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Surfaces & Fonds (Neutral Off-white / Cream) */
+  --color-surface: #fbf9f4;
+  --color-surface-dim: #dbdad5;
+  --color-surface-bright: #fbf9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3ee;
+  --color-surface-container: #f0eee9;
+  --color-surface-container-high: #eae8e3;
+  --color-surface-container-highest: #e4e2dd;
+  --color-on-surface: #1b1c19;
+  --color-on-surface-variant: #414844;
+  --color-inverse-surface: #30312e;
+  --color-inverse-on-surface: #f2f1ec;
+  --color-outline: #717973;
+  --color-outline-variant: #c1c8c2;
+  --color-surface-tint: #3f6653;
+
+  /* Vert Forêt Profond (Primary) */
+  --color-primary: #012d1d;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1b4332;
+  --color-on-primary-container: #86af99;
+  --color-inverse-primary: #a5d0b9;
+
+  /* Terre & Terracotta (Secondary) */
+  --color-secondary: #89502e;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #feb289;
+  --color-on-secondary-container: #794222;
+
+  /* Rouille Profond (Tertiary) */
+  --color-tertiary: #461800;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #682802;
+  --color-on-tertiary-container: #ec8f61;
+
+  /* Erreurs & Alertes */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Palettes Fixes */
+  --color-primary-fixed: #c1ecd4;
+  --color-primary-fixed-dim: #a5d0b9;
+  --color-on-primary-fixed: #002114;
+  --color-on-primary-fixed-variant: #274e3d;
+  --color-secondary-fixed: #ffdbca;
+  --color-secondary-fixed-dim: #ffb68e;
+  --color-on-secondary-fixed: #331200;
+  --color-on-secondary-fixed-variant: #6d3919;
+  --color-tertiary-fixed: #ffdbcc;
+  --color-tertiary-fixed-dim: #ffb694;
+  --color-on-tertiary-fixed: #351000;
+  --color-on-tertiary-fixed-variant: #76330c;
+
+  /* Arrière-plan & Accent Or Éthique */
+  --color-background: #fbf9f4;
+  --color-on-background: #1b1c19;
+  --color-surface-variant: #e4e2dd;
+  --color-ethical-gold: #feb289;
+
+  /* Rayons de Bordure (Soft Level 1 Radius) */
+  --radius-sm: 0.125rem;
+  --radius-DEFAULT: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* Utilities Typographiques du Design System */
+@layer utilities {
+  .font-headline-xl {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .font-headline-xl {
+      font-size: 60px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .font-headline-lg {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .font-headline-lg {
+      font-size: 48px;
+    }
+  }
+
+  .font-headline-md {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  @media (min-width: 768px) {
+    .font-headline-md {
+      font-size: 32px;
+    }
+  }
+
+  .font-body-lg {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .font-body-md {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .font-label-md {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .font-label-sm {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+}
+
+/* Composants du Design System */
+@layer components {
+  /* Bouton Principal (Vert Profond) */
+  .btn-primary {
+    background-color: #012d1d;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background-color: #1b4332;
+  }
+
+  /* Bouton CTA Don (Or Éthique) */
+  .btn-cta-donate {
+    background-color: #feb289;
+    color: #012d1d;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(1, 45, 29, 0.15);
+  }
+  .btn-cta-donate:hover {
+    background-color: #fca06d;
+  }
+
+  /* Bouton Secondaire (Contour Terracotta) */
+  .btn-secondary {
+    background-color: transparent;
+    color: #89502e;
+    border: 1px solid #89502e;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(137, 80, 46, 0.08);
+  }
+
+  /* Champ de Saisie (Effet Surface d'Écriture Physique) */
+  .input-tj {
+    background: linear-gradient(180deg, #ffffff 0%, #fbf9f4 100%);
+    border-bottom: 2px solid #717973;
+    color: #1b1c19;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 0.25rem 0.25rem 0 0;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .input-tj:focus {
+    border-bottom-color: #012d1d;
+  }
+
+  /* Carte d'Impact avec Superposition Tonale */
+  .card-tj {
+    background-color: #f0eee9;
+    border: 1px solid rgba(1, 45, 29, 0.12);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .card-tj:hover {
+    border-color: rgba(1, 45, 29, 0.25);
+    background-color: #eae8e3;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+.nav-link-active {
+  border-bottom: 2px solid #89502e; /* Secondary color from config */
+  font-weight: 700;
+}
+.hero-gradient {
+  background: linear-gradient(to top, rgba(1, 45, 29, 0.9), transparent);
+}
+
+.form-focus-effect:focus-within {
+  border-color: #89502e; /* Secondary Terracotta */
+  box-shadow: 0 4px 12px rgba(137, 80, 46, 0.1);
+}
+
+.active-filter {
+  background-color: #012d1d;
+  color: #ffffff;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #012d1d20;
+  border-radius: 10px;
+}
+.text-balance {
+  text-wrap: balance;
+}
+.organic-border {
+  border-bottom: 1px solid rgba(1, 45, 29, 0.15);
+}
+.hero-gradient {
+  background: linear-gradient(to bottom, rgba(1, 45, 29, 0.4), rgba(1, 45, 29, 0.8));
+}
+
