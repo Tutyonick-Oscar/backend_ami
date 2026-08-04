@@ -18,7 +18,7 @@
       </div>
     </section>
     <!--Identity Section (Bento Grid)-->
-    <section class="lg:-mt-20 md:py-24 px-4 md:px-margin-desktop max-w-[1200px] mx-auto">
+    <section class="lg:-mt-20 py-16 md:py-24 px-4 md:px-margin-desktop max-w-[1200px] mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
         <div
           class="md:col-span-8 p-6 md:p-12 bg-surface-container-low rounded-xl flex flex-col justify-between border border-primary/5"
