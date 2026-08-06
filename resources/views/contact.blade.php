@@ -24,72 +24,7 @@
       <!--Contact Form Column-->
       <div class="lg:col-span-7 bg-surface-container-low p-6 md:p-10 border border-primary/5">
         <h2 class="font-headline-md text-2xl md:text-[2rem] text-primary mb-8">Formulaire de Contact</h2>
-        <form class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label class="text-sm font-headline-md text-on-surface-variant uppercase">
-                Nom Complet
-              </label>
-              <input
-                class="w-full bg-surface border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary transition-all px-4 py-3"
-                placeholder="Jane Doe"
-                type="text"
-              />
-            </div>
-            <div class="space-y-2">
-              <label class="text-sm font-headline-md text-on-surface-variant uppercase">
-                Adresse Email
-              </label>
-              <input
-                class="w-full bg-surface border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary transition-all px-4 py-3"
-                placeholder="jane@example.com"
-                type="email"
-              />
-            </div>
-          </div>
-          <div class="space-y-2">
-            <label class="text-sm font-headline-md text-on-surface-variant uppercase">
-              Objet de la demande
-            </label>
-            <select
-              class="w-full bg-surface border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary transition-all px-4 py-3 appearance-none"
-            >
-              <option>Devenir Partenaire</option>
-              <option>Demande d'Assistance Légale</option>
-              <option>Presse &amp; Media</option>
-              <option>Bénévolat</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div class="space-y-2">
-            <label class="text-sm font-headline-md text-on-surface-variant uppercase">
-              Votre Message
-            </label>
-            <textarea
-              class="w-full bg-surface border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary transition-all px-4 py-3 resize-none"
-              placeholder="Comment pouvons-nous collaborer ?"
-              rows="5"
-            ></textarea>
-          </div>
-          <div class="pt-4 hidden lg:block">
-            <button
-              class="w-full md:w-auto bg-[#012d1d] text-[#ffffff] px-10 py-4 font-label-md uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-3"
-              type="submit"
-            >
-              Envoyer le message
-              <span class="material-symbols-outlined text-[18px]">send</span>
-            </button>
-          </div>
-          <div class="pt-4 lg:hidden">
-            <button
-              class="w-full md:w-auto bg-[#012d1d] text-[#ffffff] px-10 py-4 font-label-md uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-3"
-              type="submit"
-            >
-              Envoyer
-              <span class="material-symbols-outlined text-[18px]">send</span>
-            </button>
-          </div>
-        </form>
+        <livewire:contact-form />
       </div>
       <!--Info Sidebar Column-->
       <div class="lg:col-span-5 space-y-12">

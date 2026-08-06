@@ -227,7 +227,7 @@
                             <h5 class="relative z-10 text-white font-headline-md text-2xl mb-4">Faire un Don</h5>
                             <button
                                 class="relative z-10 bg-white text-secondary px-6 py-2 font-bold uppercase text-xs tracking-widest hover:bg-surface-variant transition-all">
-                                Soutenir
+                                <a href="{{ route('contact') }}">Soutenir</a>
                             </button>
                         </div>
                     </div>
