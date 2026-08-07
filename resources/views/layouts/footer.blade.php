@@ -114,22 +114,7 @@
       </h6>
       <p class="text-on-primary/80 text-body-md mb-2">info@action-misericorde.org</p>
       <p class="text-on-primary/80 text-body-md">+243 993 881 612</p>
-      <div class="mt-8">
-        <p class="text-label-sm text-on-primary/40 uppercase tracking-widest mb-2">Newsletter</p>
-        <div class="flex border-b border-on-primary/30">
-          <input
-            class="bg-transparent border-none focus:ring-0 text-[#ffffff] placeholder:text-on-primary/30 py-2 w-full text-sm"
-            placeholder="Votre email"
-            type="email"
-          />
-          <button
-            type="submit"
-            class="text-[#ffffff] hover:text-secondary-container transition-colors"
-          >
-            <span class="material-symbols-outlined">arrow_forward</span>
-          </button>
-        </div>
-      </div>
+      <livewire:newsletter-subscription />
     </div>
   </div>
   <div class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop py-8 border-t border-on-primary/10">
