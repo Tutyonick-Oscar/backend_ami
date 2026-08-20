@@ -21,25 +21,25 @@
 
     <nav class="hidden md:flex items-center gap-8">
       <a
-        class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
-        href="{{route('home')}}#missions"
+        class="{{ request()->routeIs('home') && !request()->has('missions') ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant dark:text-outline-variant font-medium' }} pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
+        href="{{route('home')}}"
       >
-        Missions
+        Accueil
       </a>
       <a
-        class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
+        class="{{ request()->routeIs('events') ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant dark:text-outline-variant font-medium' }} pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
         href="{{route('events')}}"
       >
-        Events
+        Evenements
       </a>
       <a
-        class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
+        class="{{ request()->routeIs('about') ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant dark:text-outline-variant font-medium' }} pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
         href="{{route('about')}}"
       >
-        About
+        A propos
       </a>
       <a
-        class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
+        class="{{ request()->routeIs('contact') ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant dark:text-outline-variant font-medium' }} pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200"
         href="{{route('contact')}}"
       >
         Contact
@@ -48,9 +48,9 @@
     <div class="hidden md:flex items-center gap-4">
       
       <span
-        class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md font-bold hover:bg-primary-container transition-all active:opacity-80"
+        class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-label-md font-bold hover:bg-primary-container transition-all active:opacity-80"
       >
-        <a href="{{route('contact')}}">Support Our Work</a>
+        <a href="{{route('contact')}}">Nous soutenir</a>
     </span>
     </div>
   </div>
@@ -58,39 +58,39 @@
   <!-- Mobile Menu -->
   <div x-show="isOpen" class="md:hidden bg-surface border-t border-primary/10 p-4 flex flex-col gap-4">
     <a
-      class="text-on-surface-variant font-medium py-2 hover:text-secondary transition-colors"
-      href="{{route('home')}}#missions"
+      class="{{ request()->routeIs('home') ? 'text-primary font-bold' : 'text-on-surface-variant' }} font-medium py-2 hover:text-secondary transition-colors"
+      href="{{route('home')}}"
       @click="isOpen = false"
     >
-      Missions
+      Accueil
     </a>
     <a
-      class="text-on-surface-variant font-medium py-2 hover:text-secondary transition-colors"
+      class="{{ request()->routeIs('events') ? 'text-primary font-bold' : 'text-on-surface-variant' }} font-medium py-2 hover:text-secondary transition-colors"
       href="{{route('events')}}"
       @click="isOpen = false"
     >
-      Events
+      Evenements
     </a>
     <a
-      class="text-on-surface-variant font-medium py-2 hover:text-secondary transition-colors"
+      class="{{ request()->routeIs('about') ? 'text-primary font-bold' : 'text-on-surface-variant' }} font-medium py-2 hover:text-secondary transition-colors"
       href="{{route('about')}}"
       @click="isOpen = false"
     >
-      About
+      A propos
     </a>
     <a
-      class="text-on-surface-variant font-medium py-2 hover:text-secondary transition-colors"
+      class="{{ request()->routeIs('contact') ? 'text-primary font-bold' : 'text-on-surface-variant' }} font-medium py-2 hover:text-secondary transition-colors"
       href="{{route('contact')}}"
       @click="isOpen = false"
     >
       Contact
     </a>
     <a
-      class="bg-primary text-[#ffffff] px-6 py-3 rounded-lg font-label-md font-bold text-center hover:bg-primary-container transition-all"
+      class="bg-secondary text-[#ffffff] px-6 py-3 rounded-lg font-label-md font-bold text-center hover:bg-primary-container transition-all"
       href="{{route('contact')}}"
       @click="isOpen = false"
     >
-      Support Our Work
+      Nous soutenir
     </a>
   </div>
 </header>

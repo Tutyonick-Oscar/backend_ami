@@ -15,7 +15,8 @@ class Event extends Model
         'is_active',
         'event_date',
         'status',
-        'user_id'
+        'user_id',
+        'avatar'
     ];
 
     public function category(){
@@ -25,5 +26,23 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function eventSatus()
+    {
+        /**
+         * take the event status and return the corresponding string in french
+         */
+
+        switch ($this->status) {
+            case 'upcoming':
+                return 'À venir';
+            case 'ongoing':
+                return 'En cours';
+            case 'completed':
+                return 'Terminé';
+            default:
+                return 'Non défini';
+        }
     }
 }

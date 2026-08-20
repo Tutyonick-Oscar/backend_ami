@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\FileUpload;
 
 class EventForm
 {
@@ -24,6 +25,14 @@ class EventForm
                     ->maxLength(255),
                 DatePicker::make('event_date'),
                 Toggle::make('is_active'),
+                FileUpload::make('avatar')
+                    ->label('avatar')
+                    ->image()
+                    ->disk('public')
+                    ->columnSpanFull()
+                    ->directory('launches')
+                    ->visibility('public')
+                    ->previewable(),
                 RichEditor::make('description')
                     ->columnSpanFull(),
             ]);
