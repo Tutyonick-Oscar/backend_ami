@@ -123,6 +123,7 @@
             </div>
         </section>
         <!--Featured Event-->
+        @if ($activeEvent)
         <section class="py-16 md:py-[120px]">
             <div class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop">
                 <div class="flex justify-between items-end mb-12">
@@ -133,7 +134,7 @@
                         <h3 class="text-2xl md:text-[2rem] font-headline-lg text-primary">Engagement Communautaire</h3>
                     </div>
                     <a class="hidden md:flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors border-b-2 border-primary/20 pb-1"
-                        href="#">
+                        href="{{ route('events') }}">
                         Tous les événements
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
@@ -141,28 +142,26 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-[3rem]">
                     <div class="lg:col-span-8 group cursor-pointer">
                         <div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-6">
-                            <img class="w-full h-full transition-transform duration-700 group-hover:scale-105"
-                                data-alt="An educational workshop in a rural mining community, showing a specialist demonstrating the health hazards of mercury and chemicals in artisanal gold mining. The audience consists of attentive community members. The setting is an open-air pavilion with warm natural light filtering through trees. The composition is dynamic and informative, reflecting the NGO's educational mission."
-                                src="{{ asset('images/lancement_mise_en_oeuvre.jpeg') }}" />
+                            <img class="w-full h-full object-cover"
+                                data-alt="An educational workshop"
+                                src="/storage/{{$activeEvent->avatar}}" />
                         </div>
                         <div class="max-w-2xl">
                             <h4
                                 class="text-headline-md font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors">
-                                Lancement de mise en œuvre du projet de protection des defenseurs et activistes locales de
-                                la justice environnementale , avec l'autorité locale
+                                {{ $activeEvent->title }}
                             </h4>
                             <p class="text-body-lg font-body-lg text-on-surface-variant mb-6">
-                                Une session interactive pour informer les communautés locales sur l'impact dévastateur du
-                                mercure sur la santé et les nappes phréatiques, tout en proposant des alternatives durables.
+                                {{ str(strip_tags(str($activeEvent->description)->markdown()))->limit(182) }}
                             </p>
                             <div class="flex items-center gap-6">
                                 <span class="flex items-center gap-2 text-label-md text-outline">
                                     <span class="material-symbols-outlined text-secondary">location_on</span>
-                                    Baraka, Sud-Kivu, RDC
+                                    {{ $activeEvent->location }}
                                 </span>
                                 <span class="flex items-center gap-2 text-label-md text-outline">
                                     <span class="material-symbols-outlined text-secondary">calendar_today</span>
-                                    24 avril 2024
+                                    {{ $activeEvent->event_date }}
                                 </span>
                             </div>
                         </div>
@@ -170,48 +169,27 @@
                     <div class="lg:col-span-4 space-y-8">
                         <div class="p-8 border border-primary/10 bg-surface-container-low rounded-lg">
                             <h5 class="text-label-md font-bold text-primary uppercase mb-4">
-                                Prochaines Sessions
+                                Autres evenements
                             </h5>
                             <ul class="space-y-6">
-                                <li class="flex gap-4">
+                                @forelse ($events as $event)
+                                    <li class="flex gap-4">
                                     <div
                                         class="bg-primary text-on-primary w-12 h-12 flex flex-col items-center justify-center shrink-0">
-                                        <span class="text-xs">DEC</span>
-                                        <span class="font-bold">02</span>
+                                        <img class=" rounded-[5px]" src="/storage/{{ $event->avatar }}" alt="others_events">
                                     </div>
                                     <div>
                                         <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
-                                            Atelier : Droits Fonciers des Femmes
+                                            {{ $event->category->name }} : {{ str($event->title )->limit(19)}}
                                         </h6>
-                                        <p class="text-label-sm text-outline">Siège Central</p>
+                                        <p class="text-label-sm text-outline">{{$event->location}}</p>
                                     </div>
-                                </li>
-                                <li class="flex gap-4">
-                                    <div
-                                        class="bg-primary text-on-primary w-12 h-12 flex flex-col items-center justify-center shrink-0">
-                                        <span class="text-xs">DEC</span>
-                                        <span class="font-bold">14</span>
-                                    </div>
-                                    <div>
-                                        <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
-                                            Conférence : Impact du Changement Climatique
-                                        </h6>
-                                        <p class="text-label-sm text-outline">Online</p>
-                                    </div>
-                                </li>
-                                <li class="flex gap-4">
-                                    <div
-                                        class="bg-primary text-on-primary w-12 h-12 flex flex-col items-center justify-center shrink-0">
-                                        <span class="text-xs">JAN</span>
-                                        <span class="font-bold">10</span>
-                                    </div>
-                                    <div>
-                                        <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
-                                            Lancement : Micro-crédit Vert
-                                        </h6>
-                                        <p class="text-label-sm text-outline">Zone Rurale Ouest</p>
-                                    </div>
-                                </li>
+                                </li>    
+                                @empty
+                                    <p class="text-label-sm text-outline">
+                                        Aucun événemt à afficher
+                                    </p>
+                                @endforelse
                             </ul>
                         </div>
                         <div
@@ -234,6 +212,8 @@
                 </div>
             </div>
         </section>
+            
+        @endif
         <!--CTA Section-->
         <section class="py-16 md:py-[120px] bg-surface-container relative">
             <div class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop text-center">
