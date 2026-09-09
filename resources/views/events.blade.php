@@ -47,10 +47,10 @@
                                 {{ str(strip_tags(str($activeEvent->description)->markdown()))->limit(214) }}
                             </p>
                             <div class="flex flex-wrap gap-4">
-                                <button
+                                <a href="{{ route('events.show', ['slug' => $activeEvent->slug]) }}"
                                     class="border border-outline-variant text-on-primary px-8 py-3 font-label-md hover:bg-white/10 transition-all w-full md:w-auto">
                                     Voir les détails
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -73,12 +73,12 @@
                 <!--Category Filters-->
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
                     <a href="{{ route('events') }}"
-                       class="px-4 py-2 text-label-md {{ !request()->has('category') ? 'active-filter' : 'bg-[#eae8e3] text-on-surface-variant hover:bg-surface-variant' }} rounded-full transition-all">
+                        class="px-4 py-2 text-label-md {{ !request()->has('category') ? 'active-filter' : 'bg-[#eae8e3] text-on-surface-variant hover:bg-surface-variant' }} rounded-full transition-all">
                         Tous
                     </a>
                     @forelse ($categories as $category)
                         <a href="{{ route('events', ['category' => $category->name]) }}"
-                           class="px-4 py-2 text-label-md {{ request('category') == $category->name ? 'active-filter' : 'bg-[#eae8e3] text-on-surface-variant hover:bg-surface-variant' }} rounded-full transition-all">
+                            class="px-4 py-2 text-label-md {{ request('category') == $category->name ? 'active-filter' : 'bg-[#eae8e3] text-on-surface-variant hover:bg-surface-variant' }} rounded-full transition-all">
                             {{ $category->name }}
                         </a>
                     @empty
@@ -140,7 +140,9 @@
                                 </div>
                                 <button
                                     class="w-full py-4 border border-[#89502e] text-on-primary font-bold hover:opacity-90 transition-all uppercase tracking-widest text-label-sm">
-                                    Voir les détails
+                                    <a href="{{ route('events.show',$event->slug) }}">
+                                        Voir les détails
+                                    </a>
                                 </button>
                             </div>
                         </div>

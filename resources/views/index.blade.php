@@ -149,7 +149,9 @@
                         <div class="max-w-2xl">
                             <h4
                                 class="text-headline-md font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors">
-                                {{ $activeEvent->title }}
+                                <a href="{{ route('events.show',$activeEvent->slug) }}">
+                                    {{ $activeEvent->title }}
+                                </a>
                             </h4>
                             <p class="text-body-lg font-body-lg text-on-surface-variant mb-6">
                                 {{ str(strip_tags(str($activeEvent->description)->markdown()))->limit(182) }}
@@ -180,7 +182,9 @@
                                     </div>
                                     <div>
                                         <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
-                                            {{ $event->category->name }} : {{ str($event->title )->limit(19)}}
+                                            <a href="{{ route('events.show', $event->slug) }}">
+                                                {{ $event->category->name }} : {{ str($event->title )->limit(19)}}
+                                            </a>
                                         </h6>
                                         <p class="text-label-sm text-outline">{{$event->location}}</p>
                                     </div>

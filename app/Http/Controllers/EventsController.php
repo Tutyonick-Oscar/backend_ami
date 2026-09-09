@@ -30,4 +30,17 @@ class EventsController extends Controller
             ]
         );
     }
+
+    public function show($slug)
+    {
+        $event = Event::where('slug', $slug)->firstOrFail();
+        $recentsEvents = Event::where('is_active', false)
+                                ->where('id', '!=', $event->id)
+                                ->orderBy('event_date', 'desc')->limit(3)->get();
+        return view('event_details', [
+            'event' => $event,
+            'recentsEvents' => $recentsEvents,
+        ]);
+    }
+   
 }

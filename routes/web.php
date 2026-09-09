@@ -10,3 +10,4 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/contact', ContactController::class)->name('contact');
 Route::get('/events', EventsController::class)->name('events');
+Route::get('/events/{slug}', [EventsController::class, 'show'])->name('events.show');

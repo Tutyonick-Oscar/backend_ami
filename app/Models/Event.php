@@ -4,11 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\EventCategory;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
 
 class Event extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'location',
         'event_category_id',
@@ -44,5 +50,12 @@ class Event extends Model
             default:
                 return 'Non défini';
         }
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }
