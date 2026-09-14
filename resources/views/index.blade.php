@@ -37,7 +37,8 @@
                 class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
                 <div class="md:col-span-5 mb-12 md:mb-0">
                     <div class="aspect-[4/5] relative overflow-hidden rounded-lg">
-                        <img class="w-full h-full object-cover" data-alt="missionAm" src="{{ asset('images/atelier_2.jpeg') }}" />
+                        <img class="w-full h-full object-cover" data-alt="missionAm"
+                            src="{{ asset('images/atelier_2.jpeg') }}" />
                     </div>
                 </div>
                 <div class="md:col-span-7 md:pl-12">
@@ -124,99 +125,102 @@
         </section>
         <!--Featured Event-->
         @if ($activeEvent)
-        <section class="py-16 md:py-[120px]">
-            <div class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop">
-                <div class="flex justify-between items-end mb-12">
-                    <div>
-                        <h2 class="text-label-md font-label-md text-secondary uppercase tracking-[0.2em] mb-4">
-                            Événement à la une
-                        </h2>
-                        <h3 class="text-2xl md:text-[2rem] font-headline-lg text-primary">Engagement Communautaire</h3>
-                    </div>
-                    <a class="hidden md:flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors border-b-2 border-primary/20 pb-1"
-                        href="{{ route('events') }}">
-                        Tous les événements
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-[3rem]">
-                    <div class="lg:col-span-8 group cursor-pointer">
-                        <div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-6">
-                            <img class="w-full h-full object-cover"
-                                data-alt="An educational workshop"
-                                src="/storage/{{$activeEvent->avatar}}" />
+            <section class="py-16 md:py-[120px]">
+                <div class="max-w-[1200px] mx-auto px-4 md:px-margin-desktop">
+                    <div class="flex justify-between items-end mb-12">
+                        <div>
+                            <h2 class="text-label-md font-label-md text-secondary uppercase tracking-[0.2em] mb-4">
+                                Événement à la une
+                            </h2>
+                            <h3 class="text-2xl md:text-[2rem] font-headline-lg text-primary">Engagement Communautaire</h3>
                         </div>
-                        <div class="max-w-2xl">
-                            <h4
-                                class="text-headline-md font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors">
-                                <a href="{{ route('events.show',$activeEvent->slug) }}">
-                                    {{ $activeEvent->title }}
-                                </a>
-                            </h4>
-                            <p class="text-body-lg font-body-lg text-on-surface-variant mb-6">
-                                {{ str(strip_tags(str($activeEvent->description)->markdown()))->limit(182) }}
-                            </p>
-                            <div class="flex items-center gap-6">
-                                <span class="flex items-center gap-2 text-label-md text-outline">
-                                    <span class="material-symbols-outlined text-secondary">location_on</span>
-                                    {{ $activeEvent->location }}
-                                </span>
-                                <span class="flex items-center gap-2 text-label-md text-outline">
-                                    <span class="material-symbols-outlined text-secondary">calendar_today</span>
-                                    {{ $activeEvent->event_date }}
-                                </span>
+                        <a class="hidden md:flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors border-b-2 border-primary/20 pb-1"
+                            href="{{ route('events') }}">
+                            Tous les événements
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-[3rem]">
+                        <div class="lg:col-span-8 group cursor-pointer">
+                            <div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-6">
+                                <img class="w-full h-full object-cover" data-alt="An educational workshop"
+                                    src="/storage/{{ $activeEvent->avatar }}" />
+                            </div>
+                            <div class="max-w-2xl">
+                                <h4
+                                    class="text-headline-md font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors">
+                                    <a href="{{ route('events.show', $activeEvent->slug) }}">
+                                        {{ $activeEvent->title }}
+                                    </a>
+                                </h4>
+                                <p class="text-body-lg font-body-lg text-on-surface-variant mb-6">
+                                    {{ str(html_entity_decode(strip_tags(str($activeEvent->description)->markdown()), ENT_QUOTES, 'UTF-8'))->limit(
+                                        182,
+                                    ) }}
+
+                                </p>
+                                <div class="flex items-center gap-6">
+                                    <span class="flex items-center gap-2 text-label-md text-outline">
+                                        <span class="material-symbols-outlined text-secondary">location_on</span>
+                                        {{ $activeEvent->location }}
+                                    </span>
+                                    <span class="flex items-center gap-2 text-label-md text-outline">
+                                        <span class="material-symbols-outlined text-secondary">calendar_today</span>
+                                        {{ $activeEvent->event_date }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-4 space-y-8">
+                            <div class="p-8 border border-primary/10 bg-surface-container-low rounded-lg">
+                                <h5 class="text-label-md font-bold text-primary uppercase mb-4">
+                                    Autres evenements
+                                </h5>
+                                <ul class="space-y-6">
+                                    @forelse ($events as $event)
+                                        <li class="flex gap-4">
+                                            <div
+                                                class="bg-primary text-on-primary w-12 h-12 flex flex-col items-center justify-center shrink-0">
+                                                <img class=" rounded-[5px]" src="/storage/{{ $event->avatar }}"
+                                                    alt="others_events">
+                                            </div>
+                                            <div>
+                                                <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
+                                                    <a href="{{ route('events.show', $event->slug) }}">
+                                                        {{ $event->category->name }} :
+                                                        {{ str($event->title)->limit(19) }}
+                                                    </a>
+                                                </h6>
+                                                <p class="text-label-sm text-outline">{{ $event->location }}</p>
+                                            </div>
+                                        </li>
+                                    @empty
+                                        <p class="text-label-sm text-outline">
+                                            Aucun événemt à afficher
+                                        </p>
+                                    @endforelse
+                                </ul>
+                            </div>
+                            <div
+                                class="relative h-48 bg-secondary overflow-hidden rounded-lg p-8 flex flex-col justify-center items-center text-center">
+                                <div class="absolute inset-0 opacity-10">
+                                    <svg height="100%" preserveaspectratio="none" viewbox="0 0 100 100" width="100%">
+                                        <path d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="white" stroke-width="2">
+                                        </path>
+                                        <path d="M0,70 Q25,20 50,70 T100,70" fill="none" stroke="white" stroke-width="2">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h5 class="relative z-10 text-white font-headline-md text-2xl mb-4">Faire un Don</h5>
+                                <button
+                                    class="relative z-10 bg-white text-secondary px-6 py-2 font-bold uppercase text-xs tracking-widest hover:bg-surface-variant transition-all">
+                                    <a href="{{ route('contact') }}">Soutenir</a>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="lg:col-span-4 space-y-8">
-                        <div class="p-8 border border-primary/10 bg-surface-container-low rounded-lg">
-                            <h5 class="text-label-md font-bold text-primary uppercase mb-4">
-                                Autres evenements
-                            </h5>
-                            <ul class="space-y-6">
-                                @forelse ($events as $event)
-                                    <li class="flex gap-4">
-                                    <div
-                                        class="bg-primary text-on-primary w-12 h-12 flex flex-col items-center justify-center shrink-0">
-                                        <img class=" rounded-[5px]" src="/storage/{{ $event->avatar }}" alt="others_events">
-                                    </div>
-                                    <div>
-                                        <h6 class="font-bold text-primary hover:text-secondary cursor-pointer">
-                                            <a href="{{ route('events.show', $event->slug) }}">
-                                                {{ $event->category->name }} : {{ str($event->title )->limit(19)}}
-                                            </a>
-                                        </h6>
-                                        <p class="text-label-sm text-outline">{{$event->location}}</p>
-                                    </div>
-                                </li>    
-                                @empty
-                                    <p class="text-label-sm text-outline">
-                                        Aucun événemt à afficher
-                                    </p>
-                                @endforelse
-                            </ul>
-                        </div>
-                        <div
-                            class="relative h-48 bg-secondary overflow-hidden rounded-lg p-8 flex flex-col justify-center items-center text-center">
-                            <div class="absolute inset-0 opacity-10">
-                                <svg height="100%" preserveaspectratio="none" viewbox="0 0 100 100" width="100%">
-                                    <path d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="white" stroke-width="2">
-                                    </path>
-                                    <path d="M0,70 Q25,20 50,70 T100,70" fill="none" stroke="white" stroke-width="2">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h5 class="relative z-10 text-white font-headline-md text-2xl mb-4">Faire un Don</h5>
-                            <button
-                                class="relative z-10 bg-white text-secondary px-6 py-2 font-bold uppercase text-xs tracking-widest hover:bg-surface-variant transition-all">
-                                <a href="{{ route('contact') }}">Soutenir</a>
-                            </button>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
-            
+            </section>
         @endif
         <!--CTA Section-->
         <section class="py-16 md:py-[120px] bg-surface-container relative">

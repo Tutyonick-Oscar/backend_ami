@@ -44,7 +44,9 @@
                             </h2>
 
                             <p class="text-body-md opacity-90 mb-8">
-                                {{ str(strip_tags(str($activeEvent->description)->markdown()))->limit(214) }}
+                                {{ str(html_entity_decode(strip_tags(str($activeEvent->description)->markdown()), ENT_QUOTES, 'UTF-8'))->limit(
+                                    214,
+                                ) }}
                             </p>
                             <div class="flex flex-wrap gap-4">
                                 <a href="{{ route('events.show', ['slug' => $activeEvent->slug]) }}"
@@ -132,7 +134,7 @@
                                     {{ str($event->title)->limit(60) }}
                                 </h3>
                                 <div class="text-on-surface-variant text-body-md mb-6 flex-grow">
-                                    {{ str(strip_tags(str($event->description)->markdown()))->limit(119) }}
+                                    {{ str(html_entity_decode(strip_tags(str($event->description)->markdown()), ENT_QUOTES, 'UTF-8'))->limit(119) }}
                                 </div>
                                 <div class="flex items-center gap-2 text-on-surface-variant text-label-md mb-6">
                                     <span class="material-symbols-outlined text-[18px]">location_on</span>
@@ -140,7 +142,7 @@
                                 </div>
                                 <button
                                     class="w-full py-4 border border-[#89502e] text-on-primary font-bold hover:opacity-90 transition-all uppercase tracking-widest text-label-sm">
-                                    <a href="{{ route('events.show',$event->slug) }}">
+                                    <a href="{{ route('events.show', $event->slug) }}">
                                         Voir les détails
                                     </a>
                                 </button>
